@@ -9,3 +9,10 @@ Install CPU emulator QEmu
 ```
 sudo apt install qemu
 ```
+
+### Running the os
+```
+make clean
+make
+qemu-system-i386 -drive file=os-image,if=floppy,index=0,media=disk,format=raw
+```

@@ -23,12 +23,12 @@ os-image: boot/boot_sect.bin kernel.bin
 #  - the kernel-entry, which jumps to main() in our kernel
 #  - the compiled C kernel
 kernel.bin: kernel/kernel_entry.o ${OBJ}
-	ld -o $@ -Ttext 0x1000 $^ --oformat binary
+	ld -o $@ -Ttext 0x1000 $^ --oformat binary -m elf_i386
 
 # Generic rule for compiling C code to and object file
 # For simplicity, C files depend on all header files
 %.o: %.c ${HEADERS}
-	gcc -ffreestanding -c $< -o $@
+	gcc -ffreestanding -c $< -o $@ -m32
 
 # Assemble the kernel_entry
 %.o: %.asm
